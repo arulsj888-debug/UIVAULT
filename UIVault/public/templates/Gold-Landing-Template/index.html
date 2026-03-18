@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Landing Template</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: "#C5A059",
+                            dark: "#121212",
+                            gray: "#2A2A2A",
+                            light: "#F5F5F0",
+                        },
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', "serif"],
+                        sans: ['"Montserrat"', "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brand-dark text-white">
+    
+    <div class="loader" aria-hidden="true">
+        <div class="loader-text" data-brand-text>YOUR BRAND</div>
+    </div>
+
+    <nav class="fixed w-full z-50 transition-all duration-300 px-6 py-4" id="navbar" aria-label="Primary">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-serif font-bold tracking-wider text-white">
+                <span data-brand-short>RH</span><span class="text-brand-gold">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-sans tracking-widest uppercase">
+                <a href="#home" class="hover:text-brand-gold transition-colors">Home</a>
+                <a href="#about" class="hover:text-brand-gold transition-colors">Philosophy</a>
+                <a href="#sections" class="hover:text-brand-gold transition-colors">Tools</a>
+                <a href="#gallery" class="hover:text-brand-gold transition-colors">Work</a>
+            </div>
+            <a href="https://rosehillops.gumroad.com/l/xjricaw?utm_source=demo&utm_medium=react&utm_campaign=landing_sprint&utm_content=theme_clean" class="hidden md:block px-6 py-2 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 font-sans text-xs tracking-widest uppercase" data-cta="primary">See the Sprint</a>
+            <button id="menuBtn" class="md:hidden text-white text-xl" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="fixed inset-0 z-[60] pointer-events-none">
+        <div class="absolute inset-0 bg-black/70 opacity-0" data-menu-backdrop></div>
+        <div class="absolute top-0 left-0 right-0 bg-brand-dark border-b border-white/10 opacity-0 -translate-y-6" data-menu-panel>
+            <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+                <div class="text-lg font-serif tracking-wider text-white">
+                    <span data-brand-short>RH</span><span class="text-brand-gold">.</span>
+                </div>
+                <button id="menuCloseBtn" class="text-white text-xl" aria-label="Close menu">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 pb-6">
+                <div class="grid gap-4 font-sans tracking-widest uppercase text-sm" role="menu">
+                    <a class="hover:text-brand-gold transition-colors" href="#home" data-menu-link>Home</a>
+                    <a class="hover:text-brand-gold transition-colors" href="#about" data-menu-link>Philosophy</a>
+                    <a class="hover:text-brand-gold transition-colors" href="#sections" data-menu-link>Tools</a>
+                    <a class="hover:text-brand-gold transition-colors" href="#gallery" data-menu-link>Work</a>
+                    <a class="mt-2 inline-flex justify-center px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 text-xs tracking-widest uppercase" href="https://rosehillops.gumroad.com/l/xjricaw?utm_source=demo&utm_medium=react&utm_campaign=landing_sprint&utm_content=theme_clean" data-menu-link data-cta="primary">See the Sprint</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" alt="Hero background" class="w-full h-full object-cover hero-img" fetchpriority="high"/>
+        </div>
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
+            <p class="hero-subtitle reveal-on-load text-brand-gold font-sans text-sm md:text-base tracking-[0.3em] uppercase mb-4">
+                <span data-brand-tagline>IF IT DIDN'T DEMO, IT DIDN'T HAPPEN.</span>
+            </p>
+            <h1 class="hero-title reveal-on-load text-5xl md:text-7xl lg:text-9xl font-serif font-light text-white mb-6 leading-tight">
+                Build <span class="italic text-brand-gold">useful</span><br />web tools
+            </h1>
+            <p class="hero-text reveal-on-load text-gray-300 font-sans font-light max-w-lg mx-auto mb-10">
+                A premium landing layout you can reuse for converters, generators, and small utilities—fast to ship, easy to edit.
+            </p>
+            <div class="hero-btn reveal-on-load flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#sections" class="group relative inline-flex items-center justify-start overflow-hidden rounded bg-white px-8 py-4 transition-all hover:bg-white" data-cta="secondary">
+                    <span class="absolute bottom-0 left-0 mb-9 ml-9 h-48 w-48 -translate-x-full translate-y-full rotate-45 rounded bg-brand-gold transition-all duration-500 ease-out group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                    <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white font-sans uppercase tracking-wider text-sm">Explore Tools</span>
+                </a>
+                <a href="https://rosehillops.gumroad.com/l/xjricaw?utm_source=demo&utm_medium=react&utm_campaign=landing_sprint&utm_content=theme_clean" class="inline-flex items-center justify-center px-8 py-4 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 font-sans text-sm tracking-widest uppercase rounded" data-cta="primary">See the Sprint</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-70 animate-bounce">
+            <span class="text-[10px] uppercase tracking-widest mb-2 text-gray-400">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-brand-gold to-transparent"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="py-24 bg-brand-dark relative">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div data-reveal="left">
+                    <h2 class="text-4xl md:text-6xl font-serif mb-6 leading-none">
+                        A layout that <br /><span class="text-stroke text-6xl md:text-8xl">ships</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-brand-gold mb-8"></div>
+                    <p class="text-gray-400 font-sans font-light leading-relaxed mb-6">
+                        Keep the premium look, but make it yours: swap content, keep the structure, and reuse the same sections for each tool page.
+                    </p>
+                    <ul class="space-y-4 font-sans text-sm tracking-wide text-gray-300">
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-check text-brand-gold mr-4" aria-hidden="true"></i>Clean sections + strong typography
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-check text-brand-gold mr-4" aria-hidden="true"></i>Mobile menu included
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-check text-brand-gold mr-4" aria-hidden="true"></i>Reduced-motion fallback
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative" data-reveal="right">
+                    <div class="absolute -top-4 -left-4 w-full h-full border border-brand-gold/30 z-0"></div>
+                    <div class="img-container showcase-frame relative z-10 h-[500px]">
+                        <div class="showcase-overlay">
+                            <div class="flex items-center justify-between">
+                                <span class="font-sans text-xs tracking-widest uppercase text-white/80">Showcase</span>
+                                <span class="text-brand-gold text-xs font-sans tracking-widest uppercase">No external image</span>
+                            </div>
+                            <div class="glass-panel p-6 max-w-md">
+                                <h3 class="font-serif text-2xl text-white mb-2">Drop any screenshot here</h3>
+                                <p class="font-sans text-sm text-gray-300 font-light leading-relaxed">
+                                    This panel is intentionally "image-proof." If you want a real image later, swap this container for an &lt;img&gt; or set a background-image.
+                                </p>
+                                <a href="#sections" class="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-widest border-b border-brand-gold pb-1 text-brand-gold" data-cta="secondary">
+                                    Explore modules <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="text-[10px] font-sans tracking-[0.25em] uppercase text-white/40">
+                                Replaceable • Minimal • Shippable
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sections" class="py-24 bg-brand-gray">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <span class="text-brand-gold font-sans text-xs tracking-[0.2em] uppercase">What's Inside</span>
+                    <h2 class="text-4xl md:text-5xl font-serif mt-4">Webtools Modules</h2>
+                    <p class="mt-5 text-gray-300/80 font-sans font-light max-w-2xl mx-auto">
+                        Pick a module, wire the CTA, ship the tool. Reuse the same layout for every utility page.
+                    </p>
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                        <div class="glass-panel p-6 text-left">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-bolt text-brand-gold" aria-hidden="true"></i>
+                                <span class="font-sans uppercase tracking-widest text-xs text-white/80">Fast Setup</span>
+                            </div>
+                            <p class="mt-3 text-sm text-gray-300 font-sans font-light leading-relaxed">
+                                Clean sections, predictable structure, quick swaps.
+                            </p>
+                        </div>
+                        <div class="glass-panel p-6 text-left">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-layer-group text-brand-gold" aria-hidden="true"></i>
+                                <span class="font-sans uppercase tracking-widest text-xs text-white/80">Reusable</span>
+                            </div>
+                            <p class="mt-3 text-sm text-gray-300 font-sans font-light leading-relaxed">
+                                Clone for each tool page without redesigning.
+                            </p>
+                        </div>
+                        <div class="glass-panel p-6 text-left">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-link text-brand-gold" aria-hidden="true"></i>
+                                <span class="font-sans uppercase tracking-widest text-xs text-white/80">CTA-first</span>
+                            </div>
+                            <p class="mt-3 text-sm text-gray-300 font-sans font-light leading-relaxed">
+                                All CTA links are centralized and consistent.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="cards">
+                    <div class="service-card group bg-brand-dark p-8 border border-white/5 hover:border-brand-gold/50 transition-all duration-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fa-solid fa-wand-magic-sparkles text-6xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-brand-gold transition-colors">Generators</h3>
+                        <p class="text-gray-400 font-sans font-light text-sm leading-relaxed mb-6">
+                            Turn inputs into outputs: templates, snippets, checklists, and exports—packaged fast.
+                        </p>
+                        <a href="https://rosehillops.gumroad.com/l/xjricaw?utm_source=demo&utm_medium=react&utm_campaign=landing_sprint&utm_content=theme_clean" class="inline-block text-xs uppercase tracking-widest border-b border-brand-gold pb-1 text-brand-gold" data-cta="primary">See the Sprint</a>
+                    </div>
+                    <div class="service-card group bg-brand-dark p-8 border border-white/5 hover:border-brand-gold/50 transition-all duration-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fa-solid fa-scale-balanced text-6xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-brand-gold transition-colors">Analyzers</h3>
+                        <p class="text-gray-400 font-sans font-light text-sm leading-relaxed mb-6">
+                            Validation, parsing, and "lint-style" feedback to keep your data and docs clean.
+                        </p>
+                        <a href="#gallery" class="inline-block text-xs uppercase tracking-widest border-b border-brand-gold pb-1 text-brand-gold" data-cta="secondary">View examples</a>
+                    </div>
+                    <div class="service-card group bg-brand-dark p-8 border border-white/5 hover:border-brand-gold/50 transition-all duration-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fa-solid fa-file-arrow-down text-6xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-brand-gold transition-colors">Converters</h3>
+                        <p class="text-gray-400 font-sans font-light text-sm leading-relaxed mb-6">
+                            Simple transform tools: JSON ↔ CSV, text utilities, PDF helpers—whatever you ship.
+                        </p>
+                        <a href="#contact" class="inline-block text-xs uppercase tracking-widest border-b border-brand-gold pb-1 text-brand-gold">Get in touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative py-32 bg-fixed bg-center bg-cover" style="background-image:url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop');" aria-label="Quote">
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-white mb-8">
+                    "Make it simple. Make it shippable."
+                </h2>
+                <div class="flex justify-center space-x-12 mt-12">
+                    <div class="text-center">
+                        <span class="block text-4xl md:text-5xl font-serif text-brand-gold" data-count="25">0</span>
+                        <span class="text-xs uppercase tracking-widest text-white mt-2 block">Tools Planned</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-4xl md:text-5xl font-serif text-brand-gold" data-count="7">0</span>
+                        <span class="text-xs uppercase tracking-widest text-white mt-2 block">Categories</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-4xl md:text-5xl font-serif text-brand-gold" data-count="100">0</span>
+                        <span class="text-xs uppercase tracking-widest text-white mt-2 block">Demo Focus</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-24 bg-brand-dark">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                    <div>
+                        <span class="text-brand-gold font-sans text-xs tracking-[0.2em] uppercase">Portfolio</span>
+                        <h2 class="text-4xl md:text-5xl font-serif mt-4">Selected Work</h2>
+                    </div>
+                    <a href="https://rosehillops.gumroad.com/l/xjricaw?utm_source=demo&utm_medium=react&utm_campaign=landing_sprint&utm_content=theme_clean" class="hidden md:block text-sm font-sans uppercase tracking-widest border-b border-white hover:text-brand-gold hover:border-brand-gold transition-colors pb-1" data-cta="primary">View the Sprint</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[800px]">
+                    <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Project" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <h4 class="font-serif text-2xl italic">Tool Landing</h4>
+                                <p class="text-xs uppercase tracking-widest mt-2">Showcase</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Project" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h4 class="font-serif text-xl italic">Converter</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Project" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h4 class="font-serif text-xl italic">Generator</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 md:row-span-1 relative group overflow-hidden cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Project" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h4 class="font-serif text-xl italic">Analyzer</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl"></div>
+            <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl"></div>
+            <div class="max-w-4xl mx-auto px-6 relative z-10 text-center border border-white/10 p-10 md:p-16 backdrop-blur-sm bg-white/5 rounded-sm">
+                <h4 class="text-brand-gold uppercase tracking-[0.3em] text-sm mb-4">Drop a link</h4>
+                <h2 class="text-5xl md:text-7xl font-serif text-white mb-8">Want this personalized?</h2>
+                <p class="text-gray-300 font-sans font-light mb-10 max-w-lg mx-auto">
+                    Swap brand name, tagline, and the three "Tools" cards. Everything else can stay as-is.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="https://rosehillops.gumroad.com/l/xjricaw?utm_source=demo&utm_medium=react&utm_campaign=landing_sprint&utm_content=theme_clean" class="bg-brand-gold text-black px-10 py-4 font-sans font-semibold uppercase tracking-widest hover:bg-white transition-colors duration-300 w-full md:w-auto" data-cta="primary">Primary CTA</a>
+                    <a href="#sections" class="border border-white text-white px-10 py-4 font-sans font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300 w-full md:w-auto" data-cta="secondary">Secondary CTA</a>
+                </div>
+                <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-12">
+                    <div class="flex items-center text-gray-400">
+                        <i class="fa-solid fa-location-dot mr-3 text-brand-gold" aria-hidden="true"></i>
+                        <span class="font-sans text-sm" data-brand-location>Remote / USA</span>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="https://github.com/xXBricksquadXx" class="text-gray-400 hover:text-brand-gold" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github text-xl" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/colby-cardell/" class="text-gray-400 hover:text-brand-gold" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-linkedin text-xl" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-sans tracking-wider">
+            <p>&copy; <span data-year></span> <span data-brand-text>YOUR BRAND</span>. All Rights Reserved.</p>
+            <div class="mt-4 md:mt-0 space-x-6">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

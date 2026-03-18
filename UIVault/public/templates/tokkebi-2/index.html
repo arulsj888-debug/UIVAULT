@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kashima Menu - Music & Gallery</title>
+<style>
+:root {
+/* --- CONFIGURAZIONE DIMENSIONI --- */
+--btn-width: 290px;
+--btn-height: 190px;
+/* --- SPOSTA E RUOTA I PULSANTI QUI --- */
+--p1-x: -397px; --p1-y: -280px; --p1-r: -15deg;
+--p2-x: -427px; --p2-y: -195px; --p2-r: -6deg;
+--p3-x: -427px; --p3-y: -95px;  --p3-r: 0deg;
+--p4-x: -417px; --p4-y: -5px;   --p4-r: 2deg;
+--p5-x: -387px; --p5-y: 85px;  --p5-r: 7deg;
+/* --- MODIFICA MINI PULSANTE "SPECIAL" QUI --- */
+--p6-x: -225px;            /* Posizionato sopra KLIN */
+--p6-y: -255px;           /* Altezza sopra il ventaglio */
+--p6-r: 22deg;           /* ROTAZIONE DEL TASTO SPECIAL */
+--p6-width: 80px;        
+--p6-height: 35px;       
+--p6-font-size: 13px;    
+--music-x: 20px;
+--music-y: 20px;
+}
+
+body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #1a1a1a; font-family: 'Segoe UI', sans-serif; }
+
+.animated-background { position: fixed; width: 100%; height: 100%; background: url('https://i.imgur.com/1wBjt7i.png') repeat; background-size: 300px; animation: moveOblique 40s linear infinite; z-index: 1; }
+
+.main-wrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; display: flex; align-items: center; gap: 40px; }
+
+.kashima-container { position: relative; width: 450px; height: 450px; display: flex; justify-content: center; align-items: center; }
+
+.buttons-layer { position: absolute; z-index: 25; pointer-events: none; width: 1px; height: 1px; }
+
+.nav-button { position: absolute; width: var(--btn-width); height: var(--btn-height); background-size: contain; background-position: center; background-repeat: no-repeat;background-color: transparent; border: none; outline: none;cursor: pointer; opacity: 0; pointer-events: auto;transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1), opacity 0.3s;transform: translate(-50%, -50%) scale(0.1);left: 0; top: 0;}
+
+.kashima-container:hover .nav-button { opacity: 1; }
+
+.btn-1 { background-image: url('https://i.imgur.com/TIIhvH9.png'); }
+.kashima-container:hover .btn-1 { transform: translate(var(--p1-x), var(--p1-y)) rotate(var(--p1-r)) scale(1); }
+.btn-1:hover { transform: translate(var(--p1-x), var(--p1-y)) rotate(var(--p1-r)) scale(1.1) !important; filter: brightness(1.3) drop-shadow(0 0 15px #7b4db9); }
+
+.btn-2 { background-image: url('https://i.imgur.com/mFQl0RE.png'); }
+.kashima-container:hover .btn-2 { transform: translate(var(--p2-x), var(--p2-y)) rotate(var(--p2-r)) scale(1); }
+.btn-2:hover { transform: translate(var(--p2-x), var(--p2-y)) rotate(var(--p2-r)) scale(1.1) !important; filter: brightness(1.3) drop-shadow(0 0 15px #7b4db9); }
+
+.btn-3 { background-image: url('https://i.imgur.com/x1O9qqX.png'); }
+.kashima-container:hover .btn-3 { transform: translate(var(--p3-x), var(--p3-y)) rotate(var(--p3-r)) scale(1); }
+.btn-3:hover { transform: translate(var(--p3-x), var(--p3-y)) rotate(var(--p3-r)) scale(1.1) !important; filter: brightness(1.3) drop-shadow(0 0 15px #7b4db9); }
+
+.btn-4 { background-image: url('https://i.imgur.com/xQ0zq6H.png'); }
+.kashima-container:hover .btn-4 { transform: translate(var(--p4-x), var(--p4-y)) rotate(var(--p4-r)) scale(1); }
+.btn-4:hover { transform: translate(var(--p4-x), var(--p4-y)) rotate(var(--p4-r)) scale(1.1) !important; filter: brightness(1.3) drop-shadow(0 0 15px #7b4db9); }
+
+.btn-5 { background-image: url('https://i.imgur.com/kD1wnPn.png'); }
+.kashima-container:hover .btn-5 { transform: translate(var(--p5-x), var(--p5-y)) rotate(var(--p5-r)) scale(1); }
+.btn-5:hover { transform: translate(var(--p5-x), var(--p5-y)) rotate(var(--p5-r)) scale(1.1) !important; filter: brightness(1.3) drop-shadow(0 0 15px #7b4db9); }
+
+.btn-special { width: var(--p6-width) !important; height: var(--p6-height) !important;background-color: #7b4db9 !important; color: white !important; border-radius: 8px; font-weight: bold; font-size: var(--p6-font-size);display: flex; align-items: center; justify-content: center;border: 2px solid white !important;z-index: 110 !important;box-shadow: 0 0 10px rgba(0,0,0,0.5);opacity: 0;pointer-events: auto;}
+
+.kashima-container:hover .btn-special { opacity: 1; transform: translate(var(--p6-x), var(--p6-y)) rotate(var(--p6-r)) scale(1); }
+.btn-special:hover { filter: brightness(1.4) !important; transform: translate(var(--p6-x), var(--p6-y)) rotate(var(--p6-r)) scale(1.1) !important; cursor: pointer; }
+
+.text-window { position: absolute; top: 50px; left: 110%; width: 450px; height: 380px; background: rgba(10, 10, 10, 0.96); border: 2px solid #7b4db9; border-radius: 15px; z-index: 100; padding: 20px; display: none; color: white; box-shadow: 0 0 30px black; }
+
+#popupBody { height: 90%; margin-top: 15px; overflow-y: auto; padding-right: 5px; }
+#popupBody::-webkit-scrollbar { width: 5px; }
+#popupBody::-webkit-scrollbar-thumb { background: #7b4db9; border-radius: 10px; }
+
+.image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; display: none; }
+
+.gallery-item { text-align: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; border: 1px solid #7b4db9; }
+.gallery-item img { width: 100%; height: auto; object-fit: contain; border-radius: 5px; margin-bottom: 8px; }
+.gallery-item p { margin: 0; font-size: 13px; color: #ddd; line-height: 1.2; }
+
+#popupText { width: 100%; height: 90%; background: transparent; border: none; color: white; outline: none; font-size: 16px; resize: none; display: none; }
+
+.music-player-container { position: fixed; bottom: var(--music-y); left: var(--music-x); z-index: 1000; background: rgba(0, 0, 0, 0.8); padding: 10px; border-radius: 50px; display: flex; align-items: center; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
+
+audio { height: 30px; filter: invert(36%) sepia(88%) saturate(913%) hue-rotate(227deg) brightness(87%) contrast(87%); }
+
+.close-btn { position: absolute; top: 10px; right: 15px; cursor: pointer; color: #7b4db9; font-size: 24px; }
+
+.cloud-rotator { position: absolute; z-index: 5; pointer-events: none; }
+.rot-cw { animation: rotateSimpleCW 30s linear infinite; } 
+.rot-ccw { animation: rotateSimpleCCW 35s linear infinite; }
+.pulse { animation: pulseA 2s ease-in-out infinite; width: 640px; opacity: 0.9; }
+
+.circle-layer { position: absolute; z-index: 10; width: 550px; animation: rotateSimpleCW 1s linear infinite; pointer-events: none; }
+
+.img-front { position: absolute; z-index: 30; width: 600px; pointer-events: none; }
+
+.img-right { width: 550px; height: auto; display: block; }
+
+@keyframes pulseA { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1.1); } }
+@keyframes rotateSimpleCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rotateSimpleCCW { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes moveOblique { from { background-position: 0 0; } to { background-position: 1000px 1000px; } }
+</style>
+</head>
+<body onclick="startAudio()">
+<div class="animated-background"></div>
+
+<div class="music-player-container">
+<audio id="myAudio" controls loop autoplay>
+<source src="https://dl.dropboxusercontent.com/s/tvbtrr7znqx4fs1kuwtbo/fg.mp3?rlkey=mcyw4u3m77q03r66f0skcft12&st=nt5ggboq&dl=0.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="main-wrapper">
+<div class="kashima-container">
+<div class="buttons-layer">
+<button class="nav-button btn-1" onclick="openWindow('The Klin', 'forno')"></button>
+<button class="nav-button btn-2" onclick="openWindow('Jewels', 'gioielli')"></button>
+<button class="nav-button btn-3" onclick="openWindow('Masks', 'maschere')"></button>
+<button class="nav-button btn-4" onclick="openWindow('Incense', 'incensi')"></button>
+<button class="nav-button btn-5" onclick="openWindow('Rituals', 'rituali')"></button>
+<button class="nav-button btn-special" onclick="openWindow('Limited', 'altre_offerte')">LIMITED</button>
+</div>
+
+<div id="popupWindow" class="text-window">
+<span class="close-btn" onclick="closeWindow()">&times;</span>
+<h3 id="popupTitle" style="margin:0; color:#7b4db9; border-bottom: 1px solid #7b4db9;">TITOLO</h3>
+<div id="popupBody">
+<div id="imageGrid" class="image-grid"></div>
+<textarea id="popupText" placeholder="coming soon..."></textarea>
+</div>
+</div>
+
+<div class="cloud-rotator rot-cw">
+<img src="https://i.imgur.com/MXrEHi7.png" class="pulse">
+</div>
+<div class="cloud-rotator rot-ccw">
+<img src="https://i.imgur.com/uFqyxPW.png" class="pulse">
+</div>
+
+<img src="https://i.imgur.com/6XHDebM.png" class="circle-layer">
+<img src="https://i.imgur.com/B7AiL9Q.png" class="img-front">
+</div>
+
+<div class="new-image-container">
+<img src="https://i.imgur.com/LFQU2Nj.gif" class="img-right">
+</div>
+</div>
+
+<script>
+const galleryData = {
+'forno': [
+{ img: 'https://i.imgur.com/uie0DYt.png', text: 'Chōchin-obake - 60¥' },
+{ img: 'https://i.imgur.com/sr5Nzcl.png', text: 'Dōsojin - 60¥' }, 
+{ img: 'https://i.imgur.com/0fXRCH0.png', text: 'Chōchin-obake - 120¥' },
+{ img: 'https://i.imgur.com/rtSTqzj.png', text: 'Chōchin-obake - 40¥' },
+{ img: 'https://i.imgur.com/O0yCy9X.png', text: 'Chōchin-obake - 110¥' },
+{ img: 'https://i.imgur.com/yKN2lyz.png', text: 'Chōchin-obake - 70¥' },
+{ img: 'https://i.imgur.com/EK9V7kO.png', text: 'Chōchin-obake - 40¥' },
+{ img: 'https://i.imgur.com/5L9fq0J.png', text: 'Chōchin-obake - 90¥' }, 
+{ img: 'https://i.imgur.com/l5Q9uNl.png', text: 'Chōchin-obake - 40¥' },
+{ img: 'https://i.imgur.com/HNcVotM.png', text: 'Chōchin-obake - 40¥' },
+{ img: 'https://i.imgur.com/FZaXsV4.png', text: 'Chōchin-obake - 140¥' },
+{ img: 'https://i.imgur.com/egkJ76A.png', text: 'Chōchin-obake - 50¥' },
+{ img: 'https://i.imgur.com/p5EomPD.png', text: 'Chōchin-obake - 50¥' }
+],
+'gioielli': [
+{ img: 'https://i.imgur.com/uEBhSVW.png', text: 'Pendaglio - 50¥' },
+{ img: 'https://i.imgur.com/dKqQC2f.png', text: 'Bracciale - 80¥' }, 
+{ img: 'https://i.imgur.com/PZUeDuD.png', text: 'Perla 01 - 50¥' }, 
+{ img: 'https://i.imgur.com/rdrh4Cg.png', text: 'Perla 02 - 20¥' }, 
+{ img: 'https://i.imgur.com/ssNcCGI.png', text: 'Perla 03 - 20¥' }, 
+{ img: 'https://i.imgur.com/dI6CIOx.png', text: 'Perla 04 - 20¥' }, 
+{ img: 'https://i.imgur.com/EK9V7kO.png', text: 'Perla 05 - 20¥' }, 
+{ img: 'https://i.imgur.com/fFZGbHJ.png', text: 'Perla 06 - 20¥' }, 
+{ img: 'https://i.imgur.com/rh6jqSv.png', text: 'Perla 07 - 20¥' },
+{ img: 'https://i.imgur.com/NUABGyH.png', text: 'Perla 08 - 20¥' },
+{ img: 'https://i.imgur.com/aQUFimv.png', text: 'Perla 09 - 20¥' },
+{ img: 'https://i.imgur.com/PHj6Z3Q.png', text: 'Perla 10 - 20¥' },
+],
+'maschere': [
+{ img: 'https://i.imgur.com/azpsGoK.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/mL3Jbv8.png', text: 'Maschera Oni - 250¥' },
+{ img: 'https://i.imgur.com/Ve30zuN.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/LFOs9Dj.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/9a7uVdP.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/StlbM6Z.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/l5I2UNL.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/JPKS6EQ.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/4tV6ZQ8.png', text: 'Maschera Kitsune - 200¥' },
+{ img: 'https://i.imgur.com/V4QR46D.png', text: 'Maschera Kitsune - 200¥' },
+],
+'incensi': [
+{ img: 'https://i.imgur.com/qDm4na0.png', text: 'Incenso Bosco - 40¥' },
+{ img: 'https://i.imgur.com/r1R6SLG.png', text: 'Incenso Luna - 35¥' }, 
+{ img: 'https://i.imgur.com/Jh2Q3kv.png', text: 'Incenso Nebbia - 30¥' },
+{ img: 'https://i.imgur.com/PgtspF6.png', text: 'Incenso Terra - 30¥' },
+{ img: 'https://i.imgur.com/6kwiVU1.png', text: 'Incenso Cenere - 42¥' },
+],
+'altre_offerte': [
+{ img: 'https://i.imgur.com/lWbeAMh.png', text: 'Uwabami - 200¥' }, 
+{ img: 'https://i.imgur.com/UJlJTyn.png', text: 'Tsuki no Usagi - 210¥' }, 
+{ img: 'https://i.imgur.com/4zKFMi1.png', text: 'Tori - 210¥' }, 
+{ img: 'https://i.imgur.com/efRvBVv.png', text: 'Tora - 210¥' }
+]
+};
+
+function startAudio() {
+var audio = document.getElementById("myAudio");
+if (audio && audio.paused) { audio.play().catch(() => {}); }
+}
+
+function openWindow(title, type) {
+const windowEl = document.getElementById('popupWindow');
+const imageGrid = document.getElementById('imageGrid');
+const popupText = document.getElementById('popupText');
+windowEl.style.display = 'block';
+document.getElementById('popupTitle').innerText = title;
+
+if (type === 'rituali') {
+imageGrid.style.display = 'none';
+popupText.style.display = 'block';
+} else {
+imageGrid.style.display = 'grid';
+popupText.style.display = 'none';
+const items = galleryData[type] || [];
+imageGrid.innerHTML = ''; 
+items.forEach(item => {
+const div = document.createElement('div');
+div.className = 'gallery-item';
+div.innerHTML = `<img src="${item.img}"><p>${item.text}</p>`;
+imageGrid.appendChild(div);
+});
+}
+}
+
+function closeWindow() {
+document.getElementById('popupWindow').style.display = 'none';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Section Navigator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; user-select: none; }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-family: "Nunito Sans", sans-serif;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    a:hover { text-shadow: 0 0 10px currentColor; }
+    a:nth-child(1):hover { color: #e57373; }
+    a:nth-child(2):hover { color: #81c784; }
+    a:nth-child(3):hover { color: #64b5f6; }
+    a:nth-child(4):hover { color: #ffb74d; }
+    a:nth-child(5):hover { color: #ba68c8; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      color: white;
+      background: black;
+      font-family: "Inter", sans-serif;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    h2 {
+      font-size: clamp(1rem, 5vw, 5rem);
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      text-align: center;
+      letter-spacing: 0.5em;
+      margin-right: -0.5em;
+      color: hsl(0, 0%, 80%);
+      width: 90vw;
+      max-width: 1200px;
+      transition: transform 0.3s, text-shadow 0.3s;
+    }
+    h2:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 10px hsl(0, 0%, 80%);
+    }
+
+    header {
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      width: 100%;
+      z-index: 3;
+      height: 7em;
+      font-family: "Inter", sans-serif;
+      font-size: clamp(0.66rem, 2vw, 1rem);
+      letter-spacing: 0.5em;
+    }
+
+    nav { display: flex; gap: 1.5em; }
+
+    .section {
+      height: 100%;
+      width: 100%;
+      top: 0;
+      position: fixed;
+      visibility: hidden;
+    }
+    .wrapper-outer,
+    .wrapper-inner {
+      width: 100%;
+      height: 100%;
+      overflow-y: hidden;
+    }
+    .background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .section-title {
+      z-index: 2;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script type="text/babel">
+    const { useEffect } = React;
+
+    const Section = ({ id, title, className, bgUrl }) => (
+      <section id={id} className={`section ${className}`}>
+        <div className="wrapper-outer">
+          <div className="wrapper-inner">
+            <div
+              className="background"
+              style={{
+                backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%), url(${bgUrl})`
+              }}
+            >
+              <h2 className="section-title">{title}</h2>
+     
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const App = () => {
+      useEffect(() => {
+        let sections       = document.querySelectorAll(".section"),
+            images         = document.querySelectorAll(".background"),
+            headings       = document.querySelectorAll(".section-title"),
+            outerWrappers  = document.querySelectorAll(".wrapper-outer"),
+            innerWrappers  = document.querySelectorAll(".wrapper-inner"),
+            currentIndex   = -1,
+            animating      = false,
+            wrap           = (index, max) => (index + max) % max;
+
+        gsap.set(outerWrappers, { yPercent: 100 });
+        gsap.set(innerWrappers, { yPercent: -100 });
+
+        function gotoSection(index, direction) {
+          index = wrap(index, sections.length);
+          animating = true;
+          let dFactor = direction === -1 ? -1 : 1;
+          let tl = gsap.timeline({
+            defaults: { duration: 1.25, ease: "power1.inOut" },
+            onComplete: () => (animating = false)
+          });
+
+          if (currentIndex >= 0) {
+            gsap.set(sections[currentIndex], { zIndex: 0 });
+            tl.to(images[currentIndex], { yPercent: -15 * dFactor })
+              .set(sections[currentIndex], { autoAlpha: 0 });
+          }
+
+          gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
+          tl.fromTo(
+            [outerWrappers[index], innerWrappers[index]],
+            { yPercent: (i) => (i ? -100 * dFactor : 100 * dFactor) },
+            { yPercent: 0 },
+            0
+          )
+          .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0)
+          .fromTo(
+            headings[index],
+            { autoAlpha: 0, yPercent: 150 * dFactor },
+            { autoAlpha: 1, yPercent: 0, duration: 1, ease: "power2",
+              stagger: { each: 0.02, from: "random" } },
+            0.2
+          );
+
+          currentIndex = index;
+        }
+
+        function navigateSectionById(id) {
+          let index = Array.from(sections).findIndex(s => s.id === id);
+          if (index !== -1 && index !== currentIndex) {
+            gotoSection(index, index > currentIndex ? 1 : -1);
+          }
+        }
+
+        // Mouse wheel
+        window.addEventListener("wheel", (e) => {
+          if (animating) return;
+          if (e.deltaY < 0) gotoSection(currentIndex - 1, -1);
+          else gotoSection(currentIndex + 1, 1);
+        });
+
+        // Touch double-tap
+        let lastTap = 0;
+        document.addEventListener("touchend", (e) => {
+          let now = new Date().getTime();
+          if (now - lastTap < 500 && now - lastTap > 0) {
+            gotoSection(currentIndex + 1, 1);
+            e.preventDefault();
+          }
+          lastTap = now;
+        });
+
+        // Nav links
+        document.querySelectorAll("nav a").forEach(a => {
+          a.addEventListener("click", e => {
+            e.preventDefault();
+            navigateSectionById(e.currentTarget.getAttribute("href").slice(1));
+          });
+        });
+
+        gotoSection(0, 1);
+      }, []);
+
+      return (
+        <div>
+          <header>
+            <nav>
+              <a href="#first">One</a>
+              <a href="#second">Two</a>
+              <a href="#third">Three</a>
+              <a href="#fourth">Four</a>
+              <a href="#fifth">Five</a>
+            </nav>
+          </header>
+
+          <Section id="first"  title="City Skyline"          className="first"
+            bgUrl="https://images.unsplash.com/photo-1605629713998-167cdc70afa2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.0.3&q=85" />
+          <Section id="second" title="Flowers of Friendship" className="second"
+            bgUrl="https://images.unsplash.com/photo-1503796964332-e25e282e390f?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.0.3&q=85" />
+          <Section id="third"  title="Waves in the Ocean"    className="third"
+            bgUrl="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.0.3&q=85" />
+          <Section id="fourth" title="New York City"         className="fourth"
+            bgUrl="https://images.unsplash.com/photo-1584351583369-6baf055b51a7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.0.3&q=85" />
+          <Section id="fifth"  title="Dark Side of the Moon" className="fifth"
+            bgUrl="https://images.unsplash.com/photo-1516663713099-37eb6d60c825?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.0.3&q=85" />
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

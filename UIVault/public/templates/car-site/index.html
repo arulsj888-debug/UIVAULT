@@ -1,0 +1,192 @@
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Targo | Swift and Simple Transport</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .clip-corner {
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+        }
+
+        /* Hide scrollbar for cleaner look if needed */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased font-light selection:bg-[hsl(5,84%,55%)] selection:text-white">
+
+    <!-- Header -->
+    <header class="absolute top-0 left-0 w-full z-20 px-8 md:px-16 py-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                <polygon points="16,1 29,8.5 29,23.5 16,31 3,23.5 3,8.5" stroke="white" stroke-width="1.2" fill="none"></polygon>
+                <line x1="3" y1="8.5" x2="29" y2="23.5" stroke="white" stroke-width="0.8"></line>
+                <line x1="29" y1="8.5" x2="3" y2="23.5" stroke="white" stroke-width="0.8"></line>
+                <line x1="16" y1="1" x2="16" y2="31" stroke="white" stroke-width="0.8"></line>
+            </svg>
+            <span class="uppercase tracking-tighter text-xl font-normal">TARGO</span>
+        </div>
+        
+        <nav class="hidden md:flex gap-8">
+            <a href="#" class="text-sm text-white/80 hover:text-white transition-colors duration-300">Home</a>
+            <a href="#" class="text-sm text-white/80 hover:text-white transition-colors duration-300">About</a>
+            <a href="#" class="text-sm text-white/80 hover:text-white transition-colors duration-300">Contact Us</a>
+        </nav>
+        
+        <a href="#" class="clip-corner bg-[hsl(5,84%,55%)] text-sm font-normal px-6 py-2.5 hover:opacity-90 transition-opacity">
+            Contact Us
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[600px] w-full overflow-hidden bg-black">
+        <video src="https://go.screenpal.com/player/stream/cOeifenZ3wA" autoplay="" loop="" muted="" playsinline="" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80"></video>
+
+        <!-- Top Info Bar -->
+        <div class="absolute top-24 left-0 w-full px-8 md:px-16 z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-b border-white/10 pb-6">
+                <div class="text-xs text-white/50 tracking-wide">Worldwide Logistics</div>
+                <div class="text-xs text-white/50 tracking-wide">Premium freight solutions by Targo</div>
+                <div class="text-xs text-white/50 md:text-right tracking-wide">Delivering excellence across continents with precision and care.</div>
+            </div>
+        </div>
+
+        <!-- Main Headline -->
+        <div class="absolute bottom-24 md:bottom-20 left-0 w-full px-8 md:px-16 z-10 flex flex-col md:flex-row md:items-end gap-2 md:gap-6 pointer-events-none mb-10 md:mb-16">
+            <span class="text-xs text-white/30 hidden md:block mb-3 tracking-widest">001</span>
+            <h1 class="text-[2.5rem] md:text-[4.5rem] font-normal tracking-tighter leading-[0.95] text-white whitespace-pre-line">Swift and Simple
+Transport.</h1>
+        </div>
+
+        <!-- Bottom CTA Bar -->
+        <div class="absolute bottom-0 left-0 w-full border-t border-white/10 z-10 flex flex-row">
+            <a href="#" class="group flex-1 flex items-center justify-between px-8 md:px-16 py-5 border-r border-white/10 hover:bg-white/5 transition-colors duration-300 backdrop-blur-sm">
+                <span class="text-sm text-white/80 tracking-wide">Get a Quote</span>
+                <iconify-icon icon="solar:arrow-right-linear" width="16" class="text-white/30 group-hover:text-[hsl(5,84%,55%)] transition-colors duration-300"></iconify-icon>
+            </a>
+            <a href="#" class="group flex-1 flex items-center justify-between px-8 md:px-16 py-5 hover:bg-white/5 transition-colors duration-300 backdrop-blur-sm">
+                <span class="text-sm text-white/80 tracking-wide">Track Shipment</span>
+                <iconify-icon icon="solar:arrow-right-linear" width="16" class="text-white/30 group-hover:text-[hsl(5,84%,55%)] transition-colors duration-300"></iconify-icon>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="px-8 md:px-16 py-24 md:py-36 bg-black relative z-10">
+        <div class="flex items-center gap-4 mb-16">
+            <div class="w-10 h-px bg-white/30"></div>
+            <span class="uppercase tracking-widest text-xs text-white/50">About Us</span>
+        </div>
+        
+        <h2 class="text-[1.75rem] md:text-[3.5rem] font-normal tracking-tighter leading-[1.1] max-w-5xl">
+            <span class="text-white">From express deliveries to full-scale freight operations, </span>
+            <span class="text-white/40">Targo offers an exceptional network and trusted, personalised service.</span>
+        </h2>
+        
+        <div class="mt-16 pt-8 border-t border-white/10 flex md:justify-end">
+            <p class="text-sm text-white/50 max-w-lg leading-relaxed">
+                Our comprehensive logistics solutions include air freight, sea freight, road transport, warehousing, and customs brokerage — all tailored to your unique supply chain requirements.
+            </p>
+        </div>
+    </section>
+
+    <!-- Fleet Showcase Section -->
+    <section class="px-8 md:px-16 py-24 md:py-36 bg-black relative z-10 overflow-hidden">
+        
+        <!-- Label & Buttons -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20 relative z-10">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-px bg-[hsl(5,84%,55%)]"></div>
+                <span class="text-[hsl(5,84%,55%)] text-xs uppercase tracking-widest">Our Fleet</span>
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="#" class="rounded-full border border-[hsl(5,84%,55%)] px-6 py-2.5 text-xs text-[hsl(5,84%,55%)] hover:bg-[hsl(5,84%,55%)] hover:text-white transition-all duration-300">
+                    Get a Quote
+                </a>
+                <a href="#" class="rounded-full border border-[hsl(5,84%,55%)] px-6 py-2.5 text-xs text-[hsl(5,84%,55%)] hover:bg-[hsl(5,84%,55%)] hover:text-white transition-all duration-300">
+                    Our Services
+                </a>
+            </div>
+        </div>
+
+        <!-- Centerpiece -->
+        <div class="relative flex items-center justify-center py-20 md:py-32 w-full">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                <div class="text-[6.25rem] md:text-[12.5rem] font-normal tracking-tighter text-white/[0.04] uppercase select-none w-[150%] md:w-auto text-center">
+                    TARGO
+                </div>
+            </div>
+            
+            <div class="relative z-10 border border-white/10 rounded-[50%] aspect-[2.2/1] w-full max-w-xl flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
+                <iconify-icon icon="solar:ship-linear" width="120" class="text-white/20"></iconify-icon>
+            </div>
+
+            <div class="absolute bottom-8 text-xs text-white/30 uppercase tracking-widest z-10">
+                Global Fleet
+            </div>
+            
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block text-xs text-white/20 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180 z-10">
+                Freight Class
+            </div>
+        </div>
+
+        <!-- Bottom Info Bar -->
+        <div class="border-t border-white/10 pt-10 mt-10 grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-12 md:gap-16 items-start relative z-10">
+            <div>
+                <h3 class="text-lg font-normal text-white mb-3 tracking-tight">Express Air Freight</h3>
+                <p class="text-sm text-white/40 max-w-sm leading-relaxed">
+                    Time-critical shipments delivered globally with guaranteed schedules and real-time tracking across our premium carrier network.
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap md:flex-nowrap items-center gap-8 md:gap-12 w-full md:w-auto">
+                <div class="flex flex-col gap-2 min-w-[80px]">
+                    <div class="flex items-center gap-2.5">
+                        <iconify-icon icon="solar:speedometer-linear" width="18" class="text-white/30"></iconify-icon>
+                        <span class="text-sm font-normal text-white">150+</span>
+                    </div>
+                    <span class="text-xs text-white/40">Routes</span>
+                </div>
+                
+                <div class="flex flex-col gap-2 min-w-[80px]">
+                    <div class="flex items-center gap-2.5">
+                        <iconify-icon icon="solar:global-linear" width="18" class="text-white/30"></iconify-icon>
+                        <span class="text-sm font-normal text-white">80</span>
+                    </div>
+                    <span class="text-xs text-white/40">Countries</span>
+                </div>
+
+                <div class="flex flex-col gap-2 min-w-[80px]">
+                    <div class="flex items-center gap-2.5">
+                        <iconify-icon icon="solar:clock-circle-linear" width="18" class="text-white/30"></iconify-icon>
+                        <span class="text-sm font-normal text-white">24/7</span>
+                    </div>
+                    <span class="text-xs text-white/40">Support</span>
+                </div>
+            </div>
+
+            <div class="mt-4 md:mt-0 flex md:block w-full md:w-auto">
+                <a href="#" class="inline-block rounded-full border border-white/20 px-6 py-3 text-xs text-white/50 hover:border-white/50 hover:text-white transition-all duration-300 whitespace-nowrap w-full text-center md:w-auto">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+</body></html>

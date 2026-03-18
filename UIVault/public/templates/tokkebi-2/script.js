@@ -1,0 +1,1 @@
+/* Scripts are embedded in index.html */

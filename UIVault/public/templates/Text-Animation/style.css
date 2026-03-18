@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  min-height: 100vh;
+  font-family: "Stack Sans Headline", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+:root {
+  --c-primary: #dde1d2;
+  --c-secondary: #b2c73a;
+  --font-size: 6rem;
+  --animation-time: 25ms;
+}
+
+a.norris {
+  text-decoration: none;
+  line-height: calc(var(--font-size));
+  font-size: var(--font-size);
+  overflow: hidden;
+  line-height: var(--font-size);
+}
+
+a.norris span {
+  position: relative;
+  color: transparent;
+}
+
+a.norris span::before,
+a.norris span::after {
+  position: absolute;
+  left: 0;
+  content: attr(data-char);
+  color: var(--c-primary);
+  transition: all ease-in-out calc(var(--animation-time) * 10);
+  transition-delay: calc(var(--index) * var(--animation-time));
+}
+
+a.norris span::before {
+  transform: translateY(0);
+}
+
+a.norris span::after {
+  transform: translateY(var(--font-size));
+}
+
+a.norris:hover {
+  cursor: pointer;
+  color: var(--c-secondary);
+}
+
+a.norris:hover span::before,
+a.norris:hover span::after {
+  color: var(--c-secondary);
+}
+
+a.norris:hover span::before {
+  transform: translateY(calc(-1 * var(--font-size)));
+  opacity: 0;
+}
+
+a.norris:hover span::after {
+  transform: translateY(0);
+  opacity: 1;
+}
