@@ -258,8 +258,7 @@ export default function Register() {
         </div>
 
         <div className="auth-tagline">
-          Where UI meets
-          <span>pure inspiration</span>
+          Where UI meets <span>pure inspiration</span>
         </div>
       </div>
     </>
