@@ -1,8 +1,7 @@
 "use client";
 import './globals.css';
 import { useState, useEffect, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';import Link from 'next/link';
 
 function SearchBar() {
   const router = useRouter();
@@ -118,15 +117,8 @@ function SearchBar() {
 }
 
 export default function RootLayout({ children }) {
-  const router = useRouter();
   const pathname = usePathname();
   const isAuthPage = pathname === '/login' || pathname === '/register';
-
-  const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
-    router.push('/login');
-    router.refresh();
-  };
 
   return (
     <html lang="en" className="dark">
@@ -149,13 +141,8 @@ export default function RootLayout({ children }) {
             </div>
             <div className="flex items-center gap-6">
               <SearchBar />
-              <div className="flex items-center gap-4">
-                <button onClick={handleLogout} className="hover:text-white transition-colors text-sm px-4 py-2 rounded-md hover:bg-opacity-20 active:scale-95 duration-200" style={{ color: '#9ca3af', fontFamily: 'Plus Jakarta Sans' }}>
-                  Logout
-                </button>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#25252b', border: '1px solid rgba(72,71,76,0.2)' }}>
-                  <span className="material-symbols-outlined" style={{ color: '#a3a6ff' }}>person</span>
-                </div>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#25252b', border: '1px solid rgba(72,71,76,0.2)' }}>
+                <span className="material-symbols-outlined" style={{ color: '#a3a6ff' }}>person</span>
               </div>
             </div>
           </nav>
