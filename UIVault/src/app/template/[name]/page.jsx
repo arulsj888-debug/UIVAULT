@@ -172,6 +172,7 @@ export default function TemplateViewer({ params }) {
                 src={`/templates/${name}/index.html`}
                 title={`${displayName} preview`}
                 className="w-full h-full border-none"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
               />
             ) : (
               <div className="flex h-full overflow-auto" style={{ backgroundColor: '#000000' }}>
