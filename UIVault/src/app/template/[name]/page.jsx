@@ -44,6 +44,7 @@ export default function TemplateViewer({ params }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialTab = searchParams.get('tab') || 'preview';
+  const fromPage = searchParams.get('from') || '1';
 
   const [activeTab, setActiveTab] = useState(initialTab);
   const [code, setCode] = useState({});
@@ -52,9 +53,9 @@ export default function TemplateViewer({ params }) {
 
   useEffect(() => {
     async function fetchAll() {
-      const fileTabs = ['html', 'css', 'js', 'pug', 'scss'];
+      const { files } = await fetch(`/api/templates/${name}/files`).then(r => r.json());
       const results = await Promise.all(
-        fileTabs.map(tab =>
+        files.map(tab =>
           fetch(`/api/templates/${name}?file=${tab}`)
             .then(r => r.ok ? r.json().then(d => ({ tab, content: d.content })) : null)
         )
@@ -122,7 +123,7 @@ export default function TemplateViewer({ params }) {
                 {displayName}{isPreview ? ' — Preview' : '.jsx'}
               </h2>
             </div>
-            <button onClick={() => router.back()} className="p-2 rounded-full transition-colors hover:text-white" style={{ color: '#acaab0' }}>
+            <button onClick={() => router.push(fromPage === '1' ? '/' : `/?page=${fromPage}`, { scroll: false })} className="p-2 rounded-full transition-colors hover:text-white" style={{ color: '#acaab0' }}>
               <span className="material-symbols-outlined">close</span>
             </button>
           </div>

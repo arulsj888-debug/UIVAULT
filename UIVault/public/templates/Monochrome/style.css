@@ -1,0 +1,241 @@
+@layer design-system, reset, base, utilities, components, layout, overrides;
+
+@import "https://unpkg.com/open-props" layer(design-system.tokens);
+@import "https://unpkg.com/open-props/colors-oklch.min.css" layer(design-system.tokens);
+@import "https://unpkg.com/open-props/gray-oklch.min.css" layer(design-system.tokens);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400..700&display=swap');
+
+@layer base {
+  html {
+    --contrast-fn: min(max(((l - 0.651) * -infinity), 0), 1);
+    --surface: light-dark(var(--gray-0), var(--gray-13));
+    --primary: light-dark(var(--gray-13), var(--gray-0));
+    --on-surface: oklch(from var(--surface) var(--contrast-fn) 0.01 h);
+    --on-primary: oklch(from var(--primary) var(--contrast-fn) 0.01 h);
+    --shadow-1: 0 1px 2px -1px light-dark(hsl(220, 3%, 15%, 10%), hsl(220, 40%, 2%, 34%));
+    --spacing-none: 0;
+    --spacing-xxs: var(--size-1);
+    --spacing-xs: var(--size-2);
+    --spacing-sm: var(--size-3);
+    --spacing-md: var(--size-5);
+    --spacing-lg: var(--size-7);
+    --spacing-xl: var(--size-8);
+    --spacing-xxl: var(--size-11);
+    --label: var(--font-weight-4) var(--font-size-1) / var(--font-lineheight-0) "Roboto Flex", var(--font-system-ui);
+    --body: var(--font-weight-4) var(--font-size-2) / var(--font-lineheight-3) "Roboto Flex", var(--font-system-ui);
+    --title: var(--font-weight-6) var(--font-size-4) / var(--font-lineheight-1) "Roboto Flex", var(--font-system-ui);
+    --headline: var(--font-weight-6) var(--font-size-6) / var(--font-lineheight-1) "Roboto Flex", var(--font-system-ui);
+    --visual-radius: var(--radius-5);
+    --btn-radius: var(--radius-round);
+    --btn-min-block-size: var(--size-px-9);
+    --elevation-level-1: var(--shadow-1);
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font: var(--body);
+  }
+}
+
+@layer reset {
+  *, ::before, ::after {
+    box-sizing: border-box;
+  }
+
+  :where(:not(dialog)) {
+    margin: 0;
+  }
+
+  :where(html) {
+    -webkit-text-size-adjust: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  :where(body) {
+    min-block-size: 100svb;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer layout {
+  .section {
+    --color-3: oklch(var(--oklch-3) / 1);
+    --color-13: oklch(var(--oklch-13) / 1);
+    --surface: light-dark(var(--color-3), var(--color-13));
+    --primary: light-dark(var(--color-13), var(--color-3));
+    color-scheme: var(--theme);
+    background-color: var(--surface);
+    color: var(--on-surface);
+  }
+
+  .wrapper {
+    container-type: size;
+    display: grid;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding-inline: var(--spacing-lg);
+    padding-block: var(--spacing-xl);
+    block-size: max(100svb, 600px);
+
+    @media (width < 768px) {
+      grid-template-rows: 1fr min-content;
+    }
+
+    @media (width >= 768px) {
+      padding-inline: var(--spacing-xl);
+      padding-block: 5cqi;
+      gap: var(--spacing-xl);
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .visual {
+    container-type: size;
+    border-radius: var(--visual-radius);
+    overflow: clip;
+    inline-size: 100%;
+    block-size: 100%;
+    display: grid;
+    background-color: var(--primary);
+  }
+
+  .visual::after {
+    content: '';
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    grid-area: 1/1;
+    background-color: var(--primary);
+    mix-blend-mode: color;
+  }
+
+  .img {
+    grid-area: 1/1;
+    display: block;
+    inline-size: 100%;
+    block-size: 100cqb;
+    object-fit: cover;
+    filter: grayscale();
+  }
+
+  .content {
+    display: grid;
+    gap: var(--spacing-md);
+    place-items: start;
+    max-inline-size: 36ch;
+  }
+
+  .meta {
+    display: grid;
+    gap: var(--spacing-sm);
+  }
+
+  .title {
+    color: var(--primary);
+    font: var(--headline);
+  }
+
+  .desc {
+    font: var(--body-large);
+  }
+}
+
+@layer components {
+  .btn {
+    --_bg: var(--primary);
+    --_text: var(--on-primary);
+    --_state: none;
+    --_outline: none;
+    --_shadow: none;
+    user-select: none;
+    font: var(--label);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    text-decoration: none;
+    border-radius: var(--btn-radius);
+    background: var(--_bg);
+    border: var(--_outline);
+    color: var(--_text);
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding-block: var(--spacing-sm);
+    padding-inline: var(--spacing-md);
+    position: relative;
+    box-shadow: var(--_shadow);
+    outline: none;
+    min-block-size: var(--btn-min-block-size);
+    cursor: pointer;
+  }
+
+  .btn :is(svg, img) {
+    display: block;
+    block-size: 2.263ch;
+    inline-size: 2.263ch;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--_state);
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  .btn:has(svg, img) {
+    padding-inline-start: var(--spacing-sm);
+  }
+
+  .btn:hover {
+    --_bg: var(--primary);
+    --_text: var(--on-primary);
+    --_state: oklch(from var(--on-primary) l c h / 0.08);
+    --_outline: none;
+    --_shadow: var(--elevation-level-1);
+  }
+
+  .btn:focus-visible {
+    --_bg: var(--primary);
+    --_text: var(--on-primary);
+    --_state: oklch(from var(--on-primary) l c h / 0.12);
+    --_outline: none;
+    --_shadow: none;
+  }
+
+  .btn:active {
+    --_bg: var(--primary);
+    --_text: var(--on-primary);
+    --_state: oklch(from var(--on-primary) l c h / 0.12);
+    --_outline: none;
+    --_shadow: none;
+  }
+
+  .btn:disabled {
+    --_bg: none;
+    --_text: var(--on-surface);
+    --_state: oklch(from var(--on-surface) l c h / 0.12);
+    --_outline: none;
+    --_shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+@layer overrides {
+  /* Drive oklch color palette from --color-hue set inline on each section */
+  .section {
+    --oklch-3: 0.93 0.04 var(--color-hue);
+    --oklch-13: 0.22 0.06 var(--color-hue);
+    --color-3: oklch(var(--oklch-3));
+    --color-13: oklch(var(--oklch-13));
+    --surface: light-dark(var(--color-3), var(--color-13));
+    --primary: light-dark(var(--color-13), var(--color-3));
+    --on-surface: oklch(from var(--surface) var(--contrast-fn) 0.01 h);
+    --on-primary: oklch(from var(--primary) var(--contrast-fn) 0.01 h);
+  }
+}
