@@ -174,25 +174,20 @@ gsap.from(".hero__copy span", {
   ease: "power2.inOut"
 });
 
-let titleOne = new SplitText(".hero__title--1", { type: "words" });
-let oneWords = titleOne.words;
-gsap.from(oneWords, {
-  opacity: 0,
-  duration: 1.5,
-  y: 80,
-  ease: "power4",
-  stagger: { each: 0.15 }
+// Manual word split (replaces GSAP SplitText club plugin)
+function splitWords(selector) {
+  const el = document.querySelector(selector);
+  if (!el) return [];
+  el.innerHTML = el.textContent.split(' ').map(w => `<span style="display:inline-block">${w}</span>`).join(' ');
+  return Array.from(el.querySelectorAll('span'));
+}
+
+gsap.from(splitWords(".hero__title--1"), {
+  opacity: 0, duration: 1.5, y: 80, ease: "power4", stagger: { each: 0.15 }
 });
 
-let titleTwo = new SplitText(".hero__title--2", { type: "words" });
-let twoWords = titleTwo.words;
-gsap.from(twoWords, {
-  opacity: 0,
-  duration: 1.5,
-  y: 80,
-  delay: 0.25,
-  ease: "power4",
-  stagger: { each: 0.15 }
+gsap.from(splitWords(".hero__title--2"), {
+  opacity: 0, duration: 1.5, y: 80, delay: 0.25, ease: "power4", stagger: { each: 0.15 }
 });
 
 gsap.to(".cross-3", {
