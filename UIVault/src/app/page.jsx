@@ -12,6 +12,7 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [introVisible, setIntroVisible] = useState(true);
   const [introFading, setIntroFading] = useState(false);
+  const [introReady, setIntroReady] = useState(false);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [quoteVisible, setQuoteVisible] = useState(true);
 
@@ -29,18 +30,21 @@ export default function Home() {
       setIntroVisible(false);
       return;
     }
-    // Start fade-out after 8s
+  }, []);
+
+  // Start 8s countdown only after video iframe is ready
+  const handleIntroLoad = () => {
+    setIntroReady(true);
     const fadeTimer = setTimeout(() => setIntroFading(true), 8000);
-    // Remove overlay after fade completes
     const removeTimer = setTimeout(() => {
       setIntroVisible(false);
       sessionStorage.setItem('intro_seen', '1');
     }, 8800);
     return () => { clearTimeout(fadeTimer); clearTimeout(removeTimer); };
-  }, []);
+  };
 
   useEffect(() => {
-    if (!introVisible) return;
+    if (!introVisible || !introReady) return;
     // Cycle quotes every 2s: fade out → swap → fade in
     const interval = setInterval(() => {
       setQuoteVisible(false);
@@ -50,7 +54,7 @@ export default function Home() {
       }, 500);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [introReady]);
 
   useEffect(() => {
     fetch('/api/templates')
@@ -118,12 +122,13 @@ export default function Home() {
             src="/templates/car-site/bg.html"
             style={{ width: '100%', height: '100%', border: 'none', display: 'block', position: 'absolute', inset: 0 }}
             title="Intro"
+            onLoad={handleIntroLoad}
           />
 
           {/* Dark overlay */}
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
 
-          {/* Animated quote */}
+          {/* Animated quote — only show after video is ready */}
           <div style={{
             position: 'absolute',
             inset: 0,
@@ -133,7 +138,7 @@ export default function Home() {
             justifyContent: 'center',
             gap: '0.75rem',
             transition: 'opacity 0.5s ease',
-            opacity: quoteVisible ? 1 : 0,
+            opacity: introReady && quoteVisible ? 1 : 0,
             padding: '2rem',
             textAlign: 'center',
           }}>

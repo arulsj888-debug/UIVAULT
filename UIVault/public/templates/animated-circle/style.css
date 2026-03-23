@@ -1,0 +1,10 @@
+body {
+  font-family: 'General Sans', sans-serif;
+}
+
+.gradient-heading {
+  background-image: linear-gradient(144.5deg, #ffffff 28%, rgba(0, 0, 0, 0) 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

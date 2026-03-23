@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Hero Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white antialiased overflow-x-hidden w-full min-h-screen relative selection:bg-white/20 selection:text-white">
+
+  <!-- Background Video -->
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260217_030345_246c0224-10a4-422c-b324-070b7c0eceda.mp4" type="video/mp4">
+  </video>
+
+  <!-- 50% Black Overlay -->
+  <div class="absolute inset-0 w-full h-full bg-black/50 z-10 pointer-events-none"></div>
+
+  <!-- Main Content Container -->
+  <div class="relative z-20 flex flex-col min-h-screen w-full">
+
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-6 md:px-12 lg:px-[120px] py-[20px] w-full">
+      <div class="flex items-center gap-12">
+        <div class="text-white tracking-tighter font-semibold uppercase text-lg w-[187px] h-[25px] flex items-center">
+          LOGOIPSUM
+        </div>
+        <div class="hidden md:flex items-center gap-[30px]">
+          <a href="#" class="flex items-center gap-[14px] text-sm font-normal text-white hover:text-white/70 transition-colors">
+            Get Started <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+          </a>
+          <a href="#" class="flex items-center gap-[14px] text-sm font-normal text-white hover:text-white/70 transition-colors">
+            Developers <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+          </a>
+          <a href="#" class="flex items-center gap-[14px] text-sm font-normal text-white hover:text-white/70 transition-colors">
+            Features <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+          </a>
+          <a href="#" class="flex items-center gap-[14px] text-sm font-normal text-white hover:text-white/70 transition-colors">
+            Resources <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <button class="relative group inline-flex items-center justify-center rounded-full border border-white/20 p-[0.6px] overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent blur-[1px] opacity-80 z-0"></div>
+        <div class="relative z-10 bg-black rounded-full px-[29px] py-[11px] text-sm font-normal text-white group-hover:bg-white/5 transition-colors duration-300">
+          Join Waitlist
+        </div>
+      </button>
+    </nav>
+
+    <!-- Hero Content -->
+    <main class="flex-grow flex flex-col items-center pt-[200px] lg:pt-[280px] pb-[102px] px-6 w-full text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-[20px] bg-white/10 border border-white/20 backdrop-blur-sm mb-[40px]">
+        <div class="w-1 h-1 bg-white rounded-full"></div>
+        <div class="flex items-center gap-1">
+          <span class="text-white/60 text-xs font-normal">Early access available from</span>
+          <span class="text-white text-xs font-normal">May 1, 2026</span>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl tracking-tight leading-snug max-w-[613px] mx-auto mb-[24px] font-normal gradient-heading">
+        Web3 at the Speed of Experience
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-sm md:text-base text-white/70 font-light max-w-[680px] mx-auto mb-[40px] leading-relaxed">
+        Powering seamless experiences and real-time connections, EOS is the base for creators who move with purpose, leveraging resilience, speed, and scale to shape the future.
+      </p>
+
+      <!-- Main CTA Button -->
+      <button class="relative group inline-flex items-center justify-center rounded-full border border-white/40 p-[0.6px] overflow-hidden shadow-2xl shadow-white/5 hover:scale-[1.02] transition-transform duration-300 ease-out">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[2px] bg-gradient-to-r from-transparent via-white to-transparent blur-[1px] opacity-90 z-0"></div>
+        <div class="relative z-10 bg-white rounded-full px-[29px] py-[11px] text-sm font-normal text-black group-hover:bg-neutral-100 transition-colors duration-300">
+          Join Waitlist
+        </div>
+      </button>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
