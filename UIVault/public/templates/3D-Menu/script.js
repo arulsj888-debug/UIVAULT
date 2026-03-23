@@ -1,6 +1,6 @@
-import * as THREE from 'https://esm.sh/three@0.160.0?bundle';
-import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js?bundle';
-import GUI from 'https://esm.sh/lil-gui@0.19';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+import GUI from 'https://cdn.jsdelivr.net/npm/lil-gui@0.19/dist/lil-gui.esm.js';
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
