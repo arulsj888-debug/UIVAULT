@@ -46,6 +46,13 @@ export default function TemplateViewer({ params }) {
   const initialTab = searchParams.get('tab') || 'preview';
   const fromPage = searchParams.get('from') || '1';
 
+  // Redirect to full portfolio app if viewing portfolio template
+  useEffect(() => {
+    if (name === 'portofolio') {
+      window.location.href = '/portfolio';
+    }
+  }, [name]);
+
   const [activeTab, setActiveTab] = useState(initialTab);
   const [code, setCode] = useState({});
   const [availableTabs, setAvailableTabs] = useState(['preview']);
