@@ -139,7 +139,7 @@ export default function TemplateViewer({ params }) {
           <div className="flex flex-col md:flex-row items-center justify-between px-6 py-2"
             style={{ backgroundColor: '#19191e', borderBottom: '1px solid rgba(72,71,76,0.1)' }}>
             <div className="flex items-center gap-1 overflow-x-auto">
-              {availableTabs.map(tab => (
+              {availableTabs.filter(tab => !(name === 'portofolio' && tab === 'html')).map(tab => (
                 <button key={tab} onClick={() => setActiveTab(tab)}
                   className="px-5 py-3 uppercase transition-all whitespace-nowrap"
                   style={{
@@ -181,6 +181,30 @@ export default function TemplateViewer({ params }) {
                 className="w-full h-full border-none"
                 allow="compute-pressure 'none'"
               />
+            ) : name === 'portofolio' ? (
+              <div className="flex flex-col items-center justify-center h-full gap-4" style={{ backgroundColor: '#000000' }}>
+                <span className="material-symbols-outlined" style={{ fontSize: '48px', color: '#a3a6ff' }}>open_in_new</span>
+                <p style={{ fontFamily: 'Space Grotesk', color: '#acaab0', fontSize: '14px', textAlign: 'center', maxWidth: '320px', lineHeight: '1.6' }}>
+                  This is a live portfolio site. To view or download the source code, visit the original project directly.
+                </p>
+                <a
+                  href="https://uivault-portfolio.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-2 font-bold transition-all"
+                  style={{
+                    fontFamily: 'Space Grotesk',
+                    fontSize: '13px',
+                    borderRadius: '0.5rem',
+                    background: 'linear-gradient(135deg, #a3a6ff, #6063ee)',
+                    color: '#000000',
+                    boxShadow: '0 4px 15px rgba(163,166,255,0.2)',
+                    textDecoration: 'none',
+                  }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>open_in_new</span>
+                  View Source Code
+                </a>
+              </div>
             ) : (
               <div className="flex h-full overflow-auto" style={{ backgroundColor: '#000000' }}>
                 {/* Line numbers */}
